@@ -7,22 +7,6 @@ import reportWebVitals from './reportWebVitals';
 
 function detectProxy() {
 
-
-  const realIP = req.headers['x-real-ip'];
-  const clientIP = req.connection.remoteAddress;
-  if (realIP && realIP !== clientIP) {
-    // Posiblemente se está utilizando un proxy o VPN
-    console.log('Proxy??');
-    console.log('realIp' + realIP);
-    console.log('ClientIp' + clientIP);
-  }
-  else
-  {
-    console.log('vpn?');
-    console.log(req);
-  }
-
-
   // Verificar si el encabezado X-Forwarded-For está presente en la solicitud.
   if (typeof window !== 'undefined' && window.navigator && window.navigator.userAgent) {
     const ua = window.navigator.userAgent;
@@ -60,6 +44,30 @@ function detectProxy() {
 
 detectProxy();
 
+
+
+const isProxyOrVPNUsed = () => {
+  // Verificar las cabeceras HTTP en busca de señales comunes de proxies o VPNs
+  const headers = navigator && navigator.userAgent ? navigator.userAgent : '';
+
+  if (
+    headers.includes('Proxy') ||
+    headers.includes('VPN') ||
+    headers.includes('Anonymizer')
+  ) {
+    return true;
+  }
+
+  return false;
+};
+
+if (isProxyOrVPNUsed()) {
+  // El usuario está utilizando un proxy o VPN
+  console.log('Posiblemente se está utilizando un proxy o VPN.');
+} else {
+  // El usuario no está utilizando un proxy o VPN
+  console.log('No se detecta el uso de un proxy o VPN.');
+}
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
