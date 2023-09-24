@@ -13,6 +13,10 @@ function detectProxy() {
       // Si el agente de usuario contiene "Proxy", podría indicar el uso de un proxy.
       console.log('Posible uso de proxy');
     }
+    else {
+      console.log('Normal use 3');
+      console.log(ua);
+    }
   }
 
   // Verificar la presencia de encabezados HTTP específicos en las solicitudes AJAX.
@@ -28,7 +32,7 @@ function detectProxy() {
         }
         else
         {
-          console.log('Normal use 2');
+          console.log('Normal use 3');
           console.log(responseHeaders.toLowerCase());
         }
       }
