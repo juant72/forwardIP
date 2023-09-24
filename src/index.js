@@ -26,6 +26,10 @@ function detectProxy() {
           // Si la respuesta contiene el encabezado X-Forwarded-For, podría indicar el uso de un proxy.
           console.log('Posible uso de proxy');
         }
+        else
+        {
+          console.log('Normal use');
+        }
       }
     }
   };
