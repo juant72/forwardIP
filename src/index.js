@@ -6,6 +6,23 @@ import reportWebVitals from './reportWebVitals';
 
 
 function detectProxy() {
+
+
+  const realIP = req.headers['x-real-ip'];
+  const clientIP = req.connection.remoteAddress;
+  if (realIP && realIP !== clientIP) {
+    // Posiblemente se está utilizando un proxy o VPN
+    console.log('Proxy??');
+    console.log('realIp' + realIP);
+    console.log('ClientIp' + clientIP);
+  }
+  else
+  {
+    console.log('vpn?');
+    console.log(req);
+  }
+
+
   // Verificar si el encabezado X-Forwarded-For está presente en la solicitud.
   if (typeof window !== 'undefined' && window.navigator && window.navigator.userAgent) {
     const ua = window.navigator.userAgent;
