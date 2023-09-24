@@ -28,7 +28,7 @@ function detectProxy() {
         }
         else
         {
-          console.log('Normal use');
+          console.log('Normal use 2');
           console.log(responseHeaders.toLowerCase());
         }
       }
